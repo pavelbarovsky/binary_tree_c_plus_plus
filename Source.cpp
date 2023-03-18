@@ -19,7 +19,7 @@ public:
         root = nullptr;
     }
 
-    // добавление элемента в дерево
+    // adding an element to the tree
     void add(int value) {
         if (root == nullptr) {
             root = new Node(value);
@@ -51,7 +51,7 @@ public:
         }
     }
 
-    // поиск элемента в дереве
+    // search for an element in the tree
     bool search(int value) const {
         Node* current_node = root;
         while (current_node != nullptr) {
@@ -68,7 +68,7 @@ public:
         return false;
     }
 
-    // прямой обход дерева
+    // preorder tree traversal
     void preorder_traversal(Node* node, void (*visit)(int)) const {
         if (node != nullptr) {
             visit(node->data);
@@ -77,7 +77,7 @@ public:
         }
     }
 
-    // обратный объод дерева
+    // pastorder tree traversal
     void postorder_traversal(Node* node, void (*visit)(int)) const {
         if (node != nullptr) {
             postorder_traversal(node->left, visit);
@@ -86,7 +86,7 @@ public:
         }
     }
 
-    // минимальный элемент дерева
+    // minimum element of the tree
     int get_min() const {
         Node* node = root;
         while (node && node->left) node = node->left;
@@ -103,15 +103,15 @@ void deleteTree(Node* node) {
     delete node;
 }
 
-// вывод элемента в терминал
+// output element to the terminal
 void print(int value) {
     cout << value << " ";
 }
 
-// вычисляем высоту дерева
+// calculate the height of the tree
 int height(Node* root) {
     if (root == nullptr) {
-        return -1; // пустое дерево имеет высоту -1
+        return -1; // empty tree has height -1
     }
 
     int left_height = height(root->left);
@@ -120,7 +120,7 @@ int height(Node* root) {
     return max(left_height, right_height) + 1;
 }
 
-// Количество вершин дерева 
+// Number of tree vertices
 int TreeSize(Node* root) {
     if (root == NULL)
         return 0;
@@ -128,52 +128,52 @@ int TreeSize(Node* root) {
 }
 
 void Compare(int H, int _size) {
-    cout << "В полученном дереве (высотой h=" << H;
-    if (H < pow(2, H + 1) - 1) {
-        cout << ") количество верщин = " << _size << ", это значение не превышает 2^(h+1)-1 = " << pow(2, H + 1) - 1 << endl;
-    }
-    else {
-        cout << ") количество верщин = " << _size << ", это значение превышает 2^(h+1)-1 = " << pow(2, H + 1) - 1 << endl;
-    }
+     cout << "In the resulting tree (height h=" << H;
+     if (H < pow(2, H + 1) - 1) {
+         cout << ") number of vertices = " << _size << ", this value does not exceed 2^(h+1)-1 = " << pow(2, H + 1) - 1 << endl;
+     }
+     else {
+         cout << ") number of vertices = " << _size << ", this value is greater than 2^(h+1)-1 = " << pow(2, H + 1) - 1 << endl;
+     }
 }
 
 
 
 int main() {
 
-    setlocale(LC_ALL, "ru");
+     setlocale(LC_ALL, "ru");
 
-    BinarySearchTree MyTree;
-    MyTree.add(12);
-    MyTree.add(19);
-    MyTree.add(16);
-    MyTree.add(10);
-    MyTree.add(48);
-    MyTree.add(55);
-    MyTree.add(75);
-    MyTree.add(61);
-    MyTree.add(99);
-    MyTree.add(90);
+     BinarySearchTreeMyTree;
+     MyTree.add(12);
+     MyTree.add(19);
+     MyTree.add(16);
+     MyTree.add(10);
+     MyTree.add(48);
+     MyTree.add(55);
+     MyTree.add(75);
+     MyTree.add(61);
+     MyTree.add(99);
+     MyTree.add(90);
 
-    int size = TreeSize(MyTree.root);
+     int size = TreeSize(MyTree.root);
 
-    cout << "Прямой обход: ";
-    MyTree.preorder_traversal(MyTree.root, print); cout << endl;
+     cout << "Direct bypass: ";
+     MyTree.preorder_traversal(MyTree.root, print); cout << endl;
    
-    cout << "Обратный обход: ";
-    MyTree.postorder_traversal(MyTree.root, print); cout << endl;
+     cout << "Reverse traversal: ";
+     MyTree.postorder_traversal(MyTree.root, print); cout << endl;
 
-    int h = height(MyTree.root);
-    cout << "Высота дерева: " << h << endl;
+     int h = height(MyTree.root);
+     cout << "Tree height: " << h << endl;
 
-    Compare(h, size);
+     compare(h, size);
 
-    int z = 7;
-    cout << "Есть ли в дереве элемент " << z << "? Ответ: " << MyTree.search(z) << endl;
+     int z = 7;
+     cout << "Is there an element " << z << " in the tree? Answer: " << MyTree.search(z) << endl;
 
-    cout << "Минимальный элемент дерева: " << MyTree.get_min() << endl;
+     cout << "Minimum element of the tree: " << MyTree.get_min() << endl;
 
-    cout << endl; 
-    cout << "Очистка памяти. Удаление дерева..." << endl;
-    deleteTree(MyTree.root);
+     cout << endl;
+     cout << "Clearing memory. Deleting tree..." << endl;
+     deleteTree(MyTree.root);
 }
